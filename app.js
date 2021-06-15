@@ -4,43 +4,12 @@ const { weatherInfo } = require('./model')
 const {addCity} = require('./update');
 const { view, input_action, input_location, input_update, input_delCity } = require('./view');
 
-const wTable = new Table();
-
-async function app1(state, update, view){
-    const {model, currentView} = state
-    const {title, table} = currentView
-
-    //Interface
-    //console.clear()
-    //console.log(title)
-    printTable(table)
-    //console.log(state.model)
-
-    //supesto input
-    cityInfo = {name: "Santiago", temp: 17, max: 20, min: 10}
-    
-    updatedModel = addCity(cityInfo, weatherInfo)
-
-    //console.log(updatedModel)
-
-    state = {
-        ...state,
-        model: updatedModel,
-        currentView: view(updatedModel)
-    }
-    console.log(state.currentView.table)
-    //console.log(state.model) 
-    //console.log(state.model.length)
-    //console.log(table)
-    printTable(state.currentView.table)
-} 
-
 async function app(state, update){
     while(true){
         const {model, currentView} = state
         const {title, table} = currentView
         //Interface =========
-        //console.clear()
+        console.clear()
         //console.log(title)
         printTable(table)
 
