@@ -1,15 +1,46 @@
 const { weatherInfo } = require("./model");
 
-function addCity(cityInfo, model){
-    //En vez de recivir toda la info
-    //Reciva un nombre y de ahi saque de la
-    //Api la info.
+const axios = require('axios')
+
+async function getinfoAPI(name){
+    const url = `http://api.openweathermap.org/data/2.5/weather?q=${name}&appid=7c1790a34d2312e2e7c0d2afbecf8fa0&units=metric`
+
+    //No borrar esto por que asi podemos detectar errores
     /*
+    axios.get(url)
+    .then(function(response){
+        console.log(response.data.main)
+    })
+    .catch(function (error){ 
+        //Aqui saco errores en caso de
+        console.log(error)
+        console.log("Cagaso Error")
+    })
+    .finally(function(){
+        console.log("All Done")
+    })
+    */
+
+    const Info = await axios.get(url)
+    console.log(Info.data.main)
+    const cityInfo = {
+        name: name,
+        temp: Info.data.main.temp,
+        max: Info.data.main.temp_max,
+        min: Info.data.main.temp_min
+    }
+    return cityInfo
+}
+
+async function addCity(name, model){
+
+    var cityInfo = await getinfoAPI(name)
+
     console.log(cityInfo.name)
     console.log(cityInfo.temp)
     console.log(cityInfo.max)
     console.log(cityInfo.min)
-    */
+    
     //Añadir aqui la info a weather 
 
     newCity = {
@@ -33,4 +64,6 @@ function addCity(cityInfo, model){
     
     
 }
+//console.log(getinfoAPI('Santiago')) 
+
 module.exports = {addCity}

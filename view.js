@@ -57,6 +57,20 @@ function input_location(model){
         }
     ])
 }
+function input_update(model){
+    var choices = []
+    for(var i=0;i<model.length;i++){
+        choices.push(model[i].name)
+    }
+    return inquirer.prompt([
+        {
+            name: 'upCity',
+            type: 'list',
+            message: 'Update city: ',
+            choices: choices
+        }
+    ])
+}
 function input_delCity(model){
     var choices = []
     for(var i=0;i<model.length;i++){
@@ -79,4 +93,4 @@ function view(model){
         table: weatherTable(model)
     }
 }
-module.exports = {view, input_action, input_location, input_delCity}
+module.exports = {view, input_action, input_location, input_update, input_delCity}

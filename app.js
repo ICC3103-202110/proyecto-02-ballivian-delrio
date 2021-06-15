@@ -2,7 +2,7 @@ const {Table, printTable} = require('console-table-printer')
 
 const { weatherInfo } = require('./model')
 const {addCity} = require('./update');
-const { view, input_action, input_location, input_delCity } = require('./view');
+const { view, input_action, input_location, input_update, input_delCity } = require('./view');
 
 const wTable = new Table();
 
@@ -11,7 +11,7 @@ async function app1(state, update, view){
     const {title, table} = currentView
 
     //Interface
-    console.clear()
+    //console.clear()
     //console.log(title)
     printTable(table)
     //console.log(state.model)
@@ -33,7 +33,8 @@ async function app1(state, update, view){
     //console.log(state.model.length)
     //console.log(table)
     printTable(state.currentView.table)
-}   
+} 
+
 async function app(state, update){
     while(true){
         const {model, currentView} = state
@@ -53,10 +54,9 @@ async function app(state, update){
 
             //Ejecutar Api aqui
             console.log("Aqui Hago api")
+
             //supesto input
-            cityInfo = {name: "Santiago", temp: 17, max: 20, min: 10}
-    
-            updatedModel = addCity(cityInfo, weatherInfo)
+            updatedModel = await addCity(newlocation['location'], weatherInfo)
 
             state = {
                 ...state,
@@ -64,7 +64,19 @@ async function app(state, update){
                 currentView: view(updatedModel)
             }
         }
-        else if(action['action'] == 'Update city'){}
+        else if(action['action'] == 'Update city'){
+            const upCity = await input_update(model)
+            //Ejecutar update city de Update aqui
+            console.log("Actualize una cuidad")
+            console.log(upCity['upCity'])
+
+            updatedModel = model
+            state = {
+                ...state,
+                model: updatedModel,
+                currentView: view(updatedModel)
+            }
+        }
 
         else if(action['action'] == 'Delete city'){
             const delCity = await input_delCity(model)
