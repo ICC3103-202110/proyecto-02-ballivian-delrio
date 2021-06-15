@@ -1,9 +1,9 @@
 weatherInfo = [
     {
-    name: 'city', 
-    temp: 20,
-    max: 25, 
-    min: 15
+    name: ' ', 
+    temp: null,
+    max: null, 
+    min: null
     }
     ,]
 module.exports = {weatherInfo}

@@ -20,8 +20,8 @@ async function getinfoAPI(name){
         console.log("All Done")
     })
     */
-
     const Info = await axios.get(url)
+    
     console.log(Info.data.main)
     const cityInfo = {
         name: name,
@@ -36,10 +36,10 @@ async function addCity(name, model){
 
     var cityInfo = await getinfoAPI(name)
 
-    console.log(cityInfo.name)
-    console.log(cityInfo.temp)
-    console.log(cityInfo.max)
-    console.log(cityInfo.min)
+    //console.log(cityInfo.name)
+    //console.log(cityInfo.temp)
+    //console.log(cityInfo.max)
+    //console.log(cityInfo.min)
     
     //Añadir aqui la info a weather 
 
@@ -52,18 +52,25 @@ async function addCity(name, model){
     
     model.push(newCity)
     return model
-    /*
-    weatherInfo[String(cityInfo.name)] = {
-        name: cityInfo.name,
-        temp: cityInfo.temp,
-        max: cityInfo.max,
-        min: cityInfo.min
-    }
-    return{weatherInfo}
-    */
-    
-    
 }
-//console.log(getinfoAPI('Santiago')) 
+async function updateCity(name, model){
+    var newcityInfo = await getinfoAPI(name)
+    for(var i = 0; i<model.length; i++){
+        if(model[i].name == name){
+            model[i] = newcityInfo
+            break
+        }
+    }
+    return model
+}
+async function deleteCity(name, model){
+    for(var i = 0; i<model.length; i++){
+        if(model[i].name == name){
+            model.splice(i, 1)
+            break
+        }
+    }
+}
+//console.log(getinfoAPI('aaa')) 
 
-module.exports = {addCity}
+module.exports = {addCity, updateCity, deleteCity}
