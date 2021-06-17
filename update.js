@@ -70,6 +70,7 @@ async function deleteCity(name, model){
             break
         }
     }
+    return model
 }
 //console.log(getinfoAPI('aaa')) 
 
