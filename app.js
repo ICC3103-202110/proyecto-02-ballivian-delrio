@@ -11,7 +11,11 @@ async function app(state, update){
         //Interface =========
         console.clear()
         //console.log(title)
-        printTable(table)
+        if(model.length>=1){
+            printTable(table)
+        }else{
+            console.log("NO CITIES")
+        }
 
         
 
