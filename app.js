@@ -13,6 +13,8 @@ async function app(state, update){
         //console.log(title)
         printTable(table)
 
+        
+
         //Input - Action
         const action = await input_action(model)
         if(action['action'] == 'Add city'){
