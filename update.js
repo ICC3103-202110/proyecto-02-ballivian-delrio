@@ -36,13 +36,6 @@ async function addCity(name, model){
 
     var cityInfo = await getinfoAPI(name)
 
-    //console.log(cityInfo.name)
-    //console.log(cityInfo.temp)
-    //console.log(cityInfo.max)
-    //console.log(cityInfo.min)
-    
-    //Añadir aqui la info a weather 
-
     newCity = {
         name: cityInfo.name,
         temp: cityInfo.temp,
@@ -72,6 +65,5 @@ async function deleteCity(name, model){
     }
     return model
 }
-//console.log(getinfoAPI('aaa')) 
 
 module.exports = {addCity, updateCity, deleteCity}

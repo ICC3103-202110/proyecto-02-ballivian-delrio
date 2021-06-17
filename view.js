@@ -86,8 +86,6 @@ function input_delCity(model){
     ])
 }
 function view(model){
-    console.log("HERE")
-    console.log(model)
     return{
         title: weatherTitle(),
         table: weatherTable(model)

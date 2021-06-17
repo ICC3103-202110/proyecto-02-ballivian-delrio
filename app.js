@@ -10,7 +10,6 @@ async function app(state, update){
         const {title, table} = currentView
         //Interface =========
         console.clear()
-        //console.log(title)
         if(model.length>=1){
             printTable(table)
         }else{
@@ -24,11 +23,7 @@ async function app(state, update){
         if(action['action'] == 'Add city'){
             const newlocation = await input_location(model)
 
-            console.log("El input fue: ")
-            console.log(newlocation['location'])
-
             //Ejecutar Api aqui
-            console.log("Aqui Hago api")
 
             //supesto input
             updatedModel = await addCity(newlocation['location'], weatherInfo)
@@ -43,8 +38,6 @@ async function app(state, update){
         else if(action['action'] == 'Update city'){
             const upCity = await input_update(model)
             //Ejecutar update city de Update aqui
-            console.log("Actualize una cuidad")
-            console.log(upCity['upCity'])
 
             updatedModel = await updateCity(upCity['upCity'], weatherInfo)
             state = {
@@ -57,8 +50,6 @@ async function app(state, update){
         else if(action['action'] == 'Delete city'){
             const delCity = await input_delCity(model)
             //Ejecutar delete city de Update aqui
-            console.log("Borre una cuidad")
-            console.log(delCity['delCity'])
 
             updatedModel = await deleteCity(delCity['delCity'], weatherInfo)
             state = {
