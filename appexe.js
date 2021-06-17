@@ -7,5 +7,6 @@ const state = {
     model: weatherInfo,
     currentView: view(weatherInfo)
 }
+state.model.splice(0, 1)
 
 app(state, update, view)
