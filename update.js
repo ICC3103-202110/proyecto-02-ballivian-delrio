@@ -8,7 +8,6 @@ async function getinfoAPI(name){
     const url = `http://api.openweathermap.org/data/2.5/weather?q=${name}&appid=7c1790a34d2312e2e7c0d2afbecf8fa0&units=metric`
     try{
         const Info = await axios.get(url)
-        console.log(Info.data.main)
         const cityInfo = {
             name: name,
             temp: Info.data.main.temp,

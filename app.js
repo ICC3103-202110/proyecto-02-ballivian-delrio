@@ -1,4 +1,4 @@
-const {Table, printTable} = require('console-table-printer')
+const {printTable} = require('console-table-printer')
 
 const { weatherInfo } = require('./model')
 const {addCity, updateCity, deleteCity} = require('./update');
@@ -16,9 +16,6 @@ async function app(state, update){
         }else{
             console.log("NO CITIES")
         }
-
-        
-
         //Input - Action
         const action = await input_action(model)
         if(action['action'] == 'Add city'){
@@ -30,7 +27,6 @@ async function app(state, update){
                 currentView: view(updatedModel)
             }
         }
-
         else if(action['action'] == 'Update city'){
             const upCity = await input_update(model)
             updatedModel = await updateCity(upCity['upCity'], weatherInfo)
@@ -51,6 +47,5 @@ async function app(state, update){
             }
         }
     }
-
 }
 module.exports = {app}

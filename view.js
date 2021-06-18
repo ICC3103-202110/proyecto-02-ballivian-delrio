@@ -18,7 +18,6 @@ function weatherTable(model){
         }
         modelList.push(city)
     }
-    console.log(modelList)
     return modelList
 }
 function input_action(model){
